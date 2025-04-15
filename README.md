@@ -1,96 +1,17 @@
-<p align="center">
- <img align="center" alt="Vitest Preview Logo" src="https://user-images.githubusercontent.com/8603085/197406675-dbe5b555-3a71-4c6d-9547-776c18052881.svg" width="120"/>
-</p>
+# @matheusslg/vitest-preview
 
-<h1 align="center">
-<a href="https://www.vitest-preview.com" target="_blank" >Vitest Preview (Tailwind CSS Fork)</a>
-</h1>
+Visual Debugging Experience for Vitest 🧪🖼⚡️
 
-<p align="center">
-Debug your Vitest tests. Effortlessly. 🧪🖼⚡️
-</p>
-
-<p align="center">
-  <img align="center" src="https://user-images.githubusercontent.com/8603085/197373376-f6a3fe33-487b-4c35-8085-8e7e6357ce40.gif" alt="Vitest Preview Demo" />
-</p>
-
-<p align="center">
-  <a href="https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md" title="Try Vitest Preview Now" target="_blank">Try Vitest Preview Online</a>. No downloads needed!
-</p>
-
-> ⚠️ **Note**: This is a fork of the original [vitest-preview](https://github.com/nvh95/vitest-preview) repository with added support for Tailwind CSS. The original repository does not support Tailwind CSS out of the box.
-
-<!-- prettier-ignore-start -->
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-<!-- prettier-ignore-end -->
-
-[![npm version](https://img.shields.io/npm/v/vitest-preview)](https://www.npmjs.com/package/vitest-preview)
-[![Best of JS](https://img.shields.io/endpoint?url=https://bestofjs-serverless.now.sh/api/project-badge?fullName=nvh95%2Fvitest-preview%26since=weekly)](https://bestofjs.org/projects/vitest-preview)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](./CONTRIBUTING.md)
-[![Mentioned in Awesome Jest](https://awesome.re/mentioned-badge.svg)](https://github.com/vitejs/awesome-vite#testing)
-
-[![Try Vitest Preview now](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md)
-
-## Why **vitest-preview**
-
-When writing tests, we usually have to debug by reading the cryptic HTML output on the terminal. Sometimes, they are too complicated to visualize the UI in our heads. `vitest-preview` previews your Vitest tests right in a browser, then you can see your actual UI visually. You can write tests and watch rendered output changes accordingly. Vitest Preview lets you concentrate on tests in the "real world" rather than deciphering HTML code.
-
-`vitest-preview` is built on top of [Vite](https://vitejs.dev), it's blazing fast and easy to use.
-
-`vitest-preview` is a younger sibling of [`jest-preview`](https://github.com/nvh95/jest-preview) with the same idea and to solve the same problem. If you are writing tests using Jest, [give it a try](https://stackblitz.com/edit/jest-preview?file=src%2FApp.test.tsx,README.md).
-
-## Features
-
-- 👀 Visualize your testing UI in an external browser in milliseconds.
-- 🔄 Auto reloads the browser when `debug()` is executed.
-- 💅 Fully support CSS
-- 🌄 Support viewing images.
+This package provides a visual debugging experience for your Vitest tests, allowing you to preview and interact with your components during test execution.
 
 ## Installation
 
 ```bash
-npm install --save-dev vitest-preview
-# Or
-yarn add -D vitest-preview
-pnpm add -D vitest-preview
-```
-
-## Configuration
-
-### Process CSS
-
-You need to configure `vitest` to process CSS by:
-
-```diff
-// vite.config.js
-export default defineConfig({
-  test: {
-+    css: true,
-  },
-});
-
-```
-
-You might want to import your CSS global files in `setupFiles`:
-
-```diff
-// vite.config.js
-export default defineConfig({
-  test: {
-+    setupFiles: './src/test/setup.ts',
-  },
-});
-
-```
-
-```diff
-// src/test/setup.ts
-+import './global.css';
-+import '@your-design-system/css/dist/index.min.css';
-+import 'bootstrap/dist/css/bootstrap.min.css';
-
+npm install --save-dev @matheusslg/vitest-preview
+# or
+pnpm add -D @matheusslg/vitest-preview
+# or
+yarn add -D @matheusslg/vitest-preview
 ```
 
 ### Add script vitest-preview
@@ -107,90 +28,60 @@ export default defineConfig({
 
 > **Important**: If you're using Tailwind CSS, you need to add the `pretest` script that compiles your Tailwind styles before running the tests. This ensures your Tailwind styles are properly included in the preview.
 
-### Update .gitignore
-
-Update your `.gitignore`
-
-```diff
-// .gitignore
-+.vitest-preview
-```
-
 ## Usage
 
-Put `debug()` wherever you want to see the UI in your tests.
+1. Import the package in your test file:
 
-```diff
-+import { debug } from 'vitest-preview';
+```typescript
+import { debug } from '@matheusslg/vitest-preview';
+```
 
-describe('App', () => {
-  it('should work as expected', () => {
-    render(<App />);
-+    debug();
-  });
+2. Use the `debug()` function in your test to visualize the component:
+
+```typescript
+import { test } from 'vitest';
+import { debug } from '@matheusslg/vitest-preview';
+import YourComponent from './YourComponent';
+
+test('should render component correctly', () => {
+  render(<YourComponent />);\
+  debug()
+  // Your test assertions here
 });
 ```
 
-Open the **Vitest Preview Dashboard** by running the CLI command (updated in [Configuration](#configuration)):
+3. Run your tests, and a preview server will automatically start, allowing you to see your component in the browser.
 
-```bash
-npm run vitest-preview
-# Or
-yarn vitest-preview
-pnpm vitest-preview
+## Features
+
+- 🖼 Visual preview of components during test execution
+- ⚡️ Fast and lightweight
+- 🧪 Seamless integration with Vitest
+- 🔄 Auto-refresh on test re-runs
+- 🎨 Support for styling and CSS
+
+## Configuration
+
+You need to configure `vitest` to process CSS by:
+
+```diff
+// vite.config.js
+export default defineConfig({
+  test: {
++    css: true,
+  },
+});
+
 ```
-
-Then execute your tests that contain `debug()`. You will see the UI of your tests at [http://localhost:5006](http://localhost:5006).
-
-## Examples
-
-- [react-testing-library](https://github.com/nvh95/vitest-preview/tree/main/examples/react-testing-library)
-- [@vue/test-utils](https://github.com/nvh95/vitest-preview/tree/main/examples/vue-test-utils)
-
-## Is there a similar library for Jest
-
-Yes, it is. It's [Jest Preview](https://github.com/nvh95/jest-preview).
-
-## Star history
-
-[![Star History Chart](https://api.star-history.com/svg?repos=nvh95/vitest-preview&type=Date)](https://star-history.com/#nvh95/vitest-preview&Date)
 
 ## Contributing
 
-Please see the contribution guide at [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://hung.dev"><img src="https://avatars.githubusercontent.com/u/8603085?v=4?s=100" width="100px;" alt="Hung Viet Nguyen"/><br /><sub><b>Hung Viet Nguyen</b></sub></a><br /><a href="https://github.com/nvh95/vitest-preview/commits?author=nvh95" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/KatFishSnake"><img src="https://avatars.githubusercontent.com/u/12003520?v=4?s=100" width="100px;" alt="Andre"/><br /><sub><b>Andre</b></sub></a><br /><a href="#example-KatFishSnake" title="Examples">💡</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/RiverTwilight"><img src="https://avatars.githubusercontent.com/u/52880665?v=4?s=100" width="100px;" alt="René Wang"/><br /><sub><b>René Wang</b></sub></a><br /><a href="#translation-RiverTwilight" title="Translation">🌍</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-![This is open source software](https://user-images.githubusercontent.com/8603085/161439058-98faea42-c6e6-46f4-9ce6-218fad5f3b9a.gif)
+MIT License - see the [LICENSE](LICENSE) file for details.
 
-MIT
+## Credits
 
-## Support
-
-If you like the project, please consider supporting it by giving a ⭐️ to encourage the author.
-
-<!-- TODO: Write a GitHub Actions to sync with root readme -->
+This package is a fork of [vitest-preview](https://www.vitest-preview.com/) by [Hung Viet Nguyen](https://github.com/nvh95).
