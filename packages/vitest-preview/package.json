@@ -1,5 +1,5 @@
 {
-  "name": "vitest-preview",
+  "name": "@matheusslg/vitest-preview",
   "version": "1.0.0",
   "description": "Visual Debugging Experience for Vitest 🧪🖼⚡️",
   "type": "module",
