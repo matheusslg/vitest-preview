@@ -1,6 +1,6 @@
 {
   "name": "@matheusslg/vitest-preview",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Debug your Vitest tests + Tailwind CSS Integrated",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,7 @@
     "vitest-preview": "./dist/node/previewServer.mjs"
   },
   "scripts": {
-    "copy": "mkdir dist && cp src/node/empty.html dist/empty.html",
+    "copy": "mkdir -p dist/node && cp src/node/empty.html dist/node/empty.html",
     "build": "rimraf dist && pnpm copy && pkgroll",
     "build:watch": "rimraf dist && pnpm copy && pkgroll --watch",
     "prepublishOnly": "pnpm run build",
