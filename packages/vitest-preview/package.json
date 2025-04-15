@@ -1,7 +1,7 @@
 {
   "name": "@matheusslg/vitest-preview",
   "version": "1.0.0",
-  "description": "Visual Debugging Experience for Vitest 🧪🖼⚡️",
+  "description": "Debug your Vitest tests + Tailwind CSS Integrated",
   "publishConfig": {
     "access": "public"
   },
@@ -35,14 +35,14 @@
   "homepage": "https://www.vitest-preview.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nvh95/vitest-preview.git"
+    "url": "git+https://github.com/matheusslg/vitest-preview.git"
   },
   "bug": {
-    "url": "https://github.com/nvh95/viest-preview/issues"
+    "url": "https://github.com/matheusslg/vitest-preview/issues"
   },
   "author": {
-    "name": "Hung Viet Nguyen",
-    "url": "https://github.com/nvh95"
+    "name": "Matheus Cavallini",
+    "url": "https://github.com/matheusslg"
   },
   "license": "MIT",
   "dependencies": {
