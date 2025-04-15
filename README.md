@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-<a href="https://www.vitest-preview.com" target="_blank" >Vitest Preview</a>
+<a href="https://www.vitest-preview.com" target="_blank" >Vitest Preview (Tailwind CSS Fork)</a>
 </h1>
 
 <p align="center">
@@ -17,6 +17,8 @@ Debug your Vitest tests. Effortlessly. 🧪🖼⚡️
 <p align="center">
   <a href="https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md" title="Try Vitest Preview Now" target="_blank">Try Vitest Preview Online</a>. No downloads needed!
 </p>
+
+> ⚠️ **Note**: This is a fork of the original [vitest-preview](https://github.com/nvh95/vitest-preview) repository with added support for Tailwind CSS. The original repository does not support Tailwind CSS out of the box.
 
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -97,9 +99,13 @@ export default defineConfig({
 
 ```json
 "scripts": {
-  "vitest-preview": "vitest-preview"
+  "vitest-preview": "vitest-preview",
+  "pretest": "npx tailwindcss -i ./path/to/your/globals.css -o ./.vitest-preview/styles.css",
+  "test": "npm run pretest && vitest"
 },
 ```
+
+> **Important**: If you're using Tailwind CSS, you need to add the `pretest` script that compiles your Tailwind styles before running the tests. This ensures your Tailwind styles are properly included in the preview.
 
 ### Update .gitignore
 
