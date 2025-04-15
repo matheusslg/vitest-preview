@@ -1,6 +1,6 @@
 {
   "name": "@matheusslg/vitest-preview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Debug your Vitest tests + Tailwind CSS Integrated",
   "publishConfig": {
     "access": "public"
